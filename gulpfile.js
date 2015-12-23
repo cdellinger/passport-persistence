@@ -37,27 +37,12 @@ gulp.task('changelog', function () {
 		preset: 'angular'
 	}))
 	.pipe(gulp.dest('./'));
-
-/*
-	var changeLog = conventionalChangelog({preset: 'angular'});
-
-console.log(changeLog);	
-
-  return gulp.src('CHANGELOG.md', {
-    buffer: false
-  })
-    //.pipe(conventionalChangelog({
-      //preset: 'angular' // Or to any other commit message convention you use.
-    //}))
-	.pipe(changeLog)
-    .pipe(gulp.dest('./'));
-    */
 });
 
 gulp.task('github-release', function(done) {
   conventionalGithubReleaser({
     type: "oauth",
-    token: '4f96d2eb3511a02fbe9da47e32fd731b430181af' // change this to your own GitHub token or use an environment variable
+    token: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN //'4f96d2eb3511a02fbe9da47e32fd731b430181af' // change this to your own GitHub token or use an environment variable
   }, {
     preset: 'angular' // Or to any other commit message convention you use.
   }, done);
