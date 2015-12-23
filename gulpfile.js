@@ -22,7 +22,7 @@ gulp.task('test', ['lint', 'mocha']);
 
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
-var conventionalChangelog = require('conventional-changelog');
+var conventionalChangelog = require('gulp-conventional-changelog');
 var conventionalGithubReleaser = require('conventional-github-releaser');
 var bump = require('gulp-bump');
 var gutil = require('gulp-util');
@@ -30,13 +30,28 @@ var git = require('gulp-git');
 var fs = require('fs');
 
 gulp.task('changelog', function () {
+	return gulp.src('CHANGELOG.md', {
+		buffer: false
+	})
+	.pipe(conventionalChangelog({
+		preset: 'angular'
+	}))
+	.pipe(gulp.dest('./'));
+
+/*
+	var changeLog = conventionalChangelog({preset: 'angular'});
+
+console.log(changeLog);	
+
   return gulp.src('CHANGELOG.md', {
     buffer: false
   })
-    .pipe(conventionalChangelog({
-      preset: 'angular' // Or to any other commit message convention you use.
-    }))
+    //.pipe(conventionalChangelog({
+      //preset: 'angular' // Or to any other commit message convention you use.
+    //}))
+	.pipe(changeLog)
     .pipe(gulp.dest('./'));
+    */
 });
 
 gulp.task('github-release', function(done) {
