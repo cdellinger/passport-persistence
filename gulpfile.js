@@ -56,8 +56,8 @@ console.log(changeLog);
 
 gulp.task('github-release', function(done) {
   conventionalGithubReleaser({
-    type: "oauth"//,
-    //token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitHub token or use an environment variable
+    type: "oauth",
+    token: '4f96d2eb3511a02fbe9da47e32fd731b430181af' // change this to your own GitHub token or use an environment variable
   }, {
     preset: 'angular' // Or to any other commit message convention you use.
   }, done);
